@@ -1,5 +1,5 @@
 import timus_parser
-from taskVerdict import TaskVerdict
+from task_verdict import TaskVerdict
 
 
 def generate_json(user_id, date, locale='en'):

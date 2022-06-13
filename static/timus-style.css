@@ -627,7 +627,7 @@ TABLE.attempt_list TR .author_stat_header td.author_stat_count {width:300px;}
 .forumimg-afterbutton {clear:both; padding-bottom:3px;}
 
 .attempts_list { width: 760px; margin: auto; }
-.attempts_list div { display: inline-block; width: 5%; margin-left: -.36em; text-align: center; }
+.attempts_list div { display: inline-block; width: 5.2%; margin-left: -.36em; text-align: center; }
 .attempts_list .accepted { background-color:#90ff90; }
 .attempts_list .empty * { color: #b0b0b0; }
 

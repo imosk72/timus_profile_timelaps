@@ -198,6 +198,11 @@
 <!--                                        </tr>-->
 <!--                                        </tbody>-->
 <!--                                    </table>-->
+                                    <form action="" method="get">
+                                        <input type="datetime-local" name="date">
+                                        <input type="submit" value="Отправить">
+                                    </form>
+
                                     <div class="attempts_list">
                                         {% for task in tasks %}
                                         <div class="{{ task.verdict.value }}">
