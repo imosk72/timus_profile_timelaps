@@ -3,6 +3,7 @@ import re
 import dateparser
 from attempt import Attempt
 from task import Task
+from functools import lru_cache
 
 
 def get_attempts_from_page(page):
@@ -20,12 +21,15 @@ def get_attempts_from_page(page):
     return attempts
 
 
+@lru_cache
 def parse_user_attempts(user_id):
     attempts = list()
     attempts += get_attempts_from_page(requests.get(f'https://acm.timus.ru/status.aspx?author={user_id}&locale=en&count=1000').text)
+    if not attempts:
+        return []
     while True:
         new_attempts = get_attempts_from_page(requests.get(f'https://acm.timus.ru/status.aspx?author={user_id}&locale=en&count=1000&from={attempts[-1].id - 1}').text)
-        if len(new_attempts) == 0:
+        if not new_attempts:
             break
         else:
             attempts += new_attempts

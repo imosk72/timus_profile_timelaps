@@ -5,8 +5,6 @@ from fastapi.templating import Jinja2Templates
 
 from enum import Enum
 from datetime import datetime
-import handler
-import timus_parser
 from provider import TaskProvider, AttemptProvider
 
 app = FastAPI()

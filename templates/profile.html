@@ -1,63 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- saved from url=(0042)https://acm.timus.ru/author.aspx?id=291307 -->
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script type="text/javascript">
-        (function () {
-            var container = document.querySelector('#_tcx-qvglfglr7h');
-            if (!container) {
-                return;
-            }
-
-            function addToContainer(url, text) {
-                const wrapper = document.createElement('div');
-                wrapper.setAttribute('data-tcx-url', url);
-                wrapper.innerText = text;
-                container.appendChild(wrapper);
-            }
-
-            const fetch = window.fetch
-            window.fetch = function () {
-                return Promise.resolve(fetch.apply(window, arguments))
-                    .then(async response => {
-                        if (response.ok) {
-                            try {
-                                const clone = response.clone();
-                                const json = await clone.json();
-                                addToContainer(clone.url, JSON.stringify(json));
-                            } catch (err) {
-                            }
-                        }
-                        return response;
-                    });
-            };
-
-            var XHR = XMLHttpRequest.prototype;
-            var send = XHR.send;
-            var open = XHR.open;
-            XHR.open = function (method, url) {
-                this.url = url;
-                return open.apply(this, arguments);
-            };
-            XHR.send = function () {
-                this.addEventListener('load', function () {
-                    try {
-                        const response = this.response;
-                        if (response && response.length) {
-                            const firstChar = response[0];
-                            if (firstChar === '[' || firstChar === '{') {
-                                addToContainer(this.url, response);
-                            }
-                        }
-                    } catch (err) {
-                        // No-op.
-                    }
-                });
-                return send.apply(this, arguments);
-            };
-        })();
-    </script>
     <meta name="viewport" content="width=768">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Профиль пользователя @ Timus Online Judge</title>
@@ -90,7 +34,7 @@
                 <tbody>
                 <tr>
                     <td width="130" valign="TOP" align="CENTER" style="padding-bottom:5px;"><a
-                            href="https://acm.timus.ru/"><img border="0" src="./profile_files/usu-summer.jpg"
+                            href="https://acm.timus.ru/"><img border="0" src="{{ url_for('static', path='usu-summer.jpg') }}"
                                                               height="134" width="106" alt=""></a></td>
                     <td valign="TOP" align="LEFT">
                         <table width="100%" cellspacing="0" cellpadding="0" class="panel">
@@ -148,38 +92,6 @@
                 <tbody>
                 <tr>
                     <td width="795" align="CENTER">
-<!--                        <h2 class="author_name">Re_nut23 [Tyumen SU]</h2>-->
-<!--                        <div class="author_flag">-->
-<!--                            <div class="flags-img flag-CZ" title="Czech Republic"></div>-->
-<!--                        </div>-->
-<!--                        <table class="author_stats" align="CENTER">-->
-<!--                            <tbody>-->
-<!--                            <tr>-->
-<!--                                <td class="author_stats_name">Место по задачам</td>-->
-<!--                                <td class="author_stats_value">1392 из 150361</td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td class="author_stats_name">Решено задач</td>-->
-<!--                                <td class="author_stats_value">207 из 1156</td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td class="author_stats_name">Место по рейтингу</td>-->
-<!--                                <td class="author_stats_value">3067 из 150361</td>-->
-<!--                            </tr>-->
-<!--                            <tr>-->
-<!--                                <td class="author_stats_name"-->
-<!--                                    title="Рейтинг автора — это сумма сложностей всех его решенных задач">Рейтинг-->
-<!--                                </td>-->
-<!--                                <td class="author_stats_value"-->
-<!--                                    title="Рейтинг автора — это сумма сложностей всех его решенных задач">26586 из-->
-<!--                                    1598398-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                            </tbody>-->
-<!--                        </table>-->
-<!--                        <div class="author_links"><a href="https://acm.timus.ru/status.aspx?author=291307">Последние-->
-<!--                            попытки</a><br><a href="https://acm.timus.ru/status.aspx?author=291307&amp;status=accepted">Последние-->
-<!--                            успешные попытки</a></div>-->
                         <h2 class="title">Карта решенных задач</h2>
                         <table class="solved_map_box" cellspacing="0" cellpadding="0">
                             <tbody>
