@@ -4,9 +4,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from enum import Enum
+from typing import Optional
+from datetime import datetime
 import handler
-import parser
-import datetime
+import timus_parser
 
 app = FastAPI()
 
@@ -21,28 +22,6 @@ class TaskVerdict(Enum):
 
 
 @app.get("/profile/{id}", response_class=HTMLResponse)
-async def get_profile(request: Request, id: int):
-    tasks = handler.generate_json(177044, datetime.datetime.now())
-    tasks_mock = {
-            1001: {
-                "number": 1001,
-                "title": 'Задача 1001',
-                "verdict": TaskVerdict.ACCEPTED
-            },
-            1293: {
-                "number": 1293,
-                "title": 'Задача 1293',
-                "verdict": TaskVerdict.ACCEPTED
-            },
-            1298: {
-                "number": 1298,
-                "title": 'Задача 1298',
-                "verdict": TaskVerdict.TRIED
-            },
-            1299: {
-                "number": 1299,
-                "title": 'Задача 1299',
-                "verdict": TaskVerdict.EMPTY
-            },
-        }
-    return templates.TemplateResponse("profile.html", {"request": request, "id": id, "tasks": tasks_mock.values()})
+async def get_profile(request: Request, id: int, date: Optional[datetime] = datetime.now()):
+    tasks = handler.generate_json(177044, date)
+    return templates.TemplateResponse("profile.html", {"request": request, "id": id, "tasks": tasks.values()})
