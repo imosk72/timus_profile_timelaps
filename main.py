@@ -4,7 +4,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from enum import Enum
-
+import handler
+import parser
+import datetime
 
 app = FastAPI()
 
@@ -20,6 +22,7 @@ class TaskVerdict(Enum):
 
 @app.get("/profile/{id}", response_class=HTMLResponse)
 async def get_profile(request: Request, id: int):
+    tasks = handler.generate_json(177044, datetime.datetime.now())
     tasks_mock = {
             1001: {
                 "number": 1001,
