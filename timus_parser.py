@@ -16,8 +16,15 @@ def get_attempts_from_page(page):
         author = re.findall(r'<td class=\"coder\"><a.*?>(.*?)</a></td>', string)[0]
         task_number = re.findall(r'<td class=\"problem\"><a.*?>(.*?)<span', string)[0]
         verdict = re.findall(r'<td class=\"verdict_.*?\">(.*?)</td>', string)[0]
-        if task_number.isdigit():
-            attempts.append(Attempt(int(attempt_id), dateparser.parse(date + ' ' + time), author, int(task_number), verdict))
+        if not task_number.isdigit():
+            link = 'https://acm.timus.ru/' + re.findall(r'<td class=\"problem\"><a href=\"(.*?)\">', string)[0].replace('amp;', '')
+            task_page = requests.get(link).text.lower()
+            print(task_page)
+            task_name = re.findall(r'to submit the solution for this problem go to the problem set: <a .*?><nobr>(.*?)</nobr>', task_page)[0]
+            task_number = task_name.split('.')[0]
+
+        attempts.append(Attempt(int(attempt_id), dateparser.parse(date + ' ' + time), author, int(task_number), verdict))
+
     return attempts
 
 
